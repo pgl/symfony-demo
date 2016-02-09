@@ -13,4 +13,5 @@ modules:
         - Doctrine2:
             depends: Symfony2
         - \AcmeBundle\Helper\Functional
+        - Asserts
         - Sequence
