@@ -27,8 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CommentType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -45,22 +44,12 @@ class CommentType extends AbstractType
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Comment',
         ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        // Best Practice: use 'app_' as the prefix of your custom form types names
-        // see http://symfony.com/doc/current/best_practices/forms.html#custom-form-field-types
-        return 'app_comment';
     }
 }

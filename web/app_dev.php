@@ -25,18 +25,13 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
 }
 
-$loader = require_once __DIR__.'/../app/bootstrap.php.cache';
+/**
+ * @var Composer\Autoload\ClassLoader $loader
+ */
+$loader = require __DIR__.'/../app/autoload.php';
 Debug::enable();
 
-require_once __DIR__.'/../app/AppKernel.php';
-
-// We can support different env
-$applicationEnv = 'dev';
-if (!empty($_SERVER['HTTP_ENV']) && in_array($_SERVER['HTTP_ENV'], array('test', 'dev'), true)) {
-    $applicationEnv = $_SERVER['HTTP_ENV'];
-}
-
-$kernel = new AppKernel($applicationEnv, true);
+$kernel = new AppKernel('dev', true);
 $kernel->loadClassCache();
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);

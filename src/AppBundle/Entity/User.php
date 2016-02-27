@@ -7,6 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Table(name="symfony_demo_user")
  *
  * Defines the properties of the User entity to represent the application users.
  * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -51,6 +52,9 @@ class User implements UserInterface
         return $this->id;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getUsername()
     {
         return $this->username;
@@ -69,6 +73,9 @@ class User implements UserInterface
         $this->email = $email;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getPassword()
     {
         return $this->password;
@@ -93,7 +100,7 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
-    public function setRoles($roles)
+    public function setRoles(array $roles)
     {
         $this->roles = $roles;
     }

@@ -63,11 +63,13 @@ Requirements
   * and the [usual Symfony application requirements](http://symfony.com/doc/current/reference/requirements.html).
 
 If unsure about meeting these requirements, download the demo application and
-browse the `http://localhost:8000/check.php` script to get more detailed
+browse the `http://localhost:8000/config.php` script to get more detailed
 information.
 
 Installation
 ------------
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 First, install the [Symfony Installer](https://github.com/symfony/symfony-installer)
 if you haven't already. Then, install the Symfony Demo Application executing
@@ -90,7 +92,7 @@ most recent version executing the `symfony self-update` command.
 >
 >     $ git clone https://github.com/symfony/symfony-demo
 >     $ cd symfony-demo/
->     $ composer install
+>     $ composer install --no-interaction
 
 Usage
 -----

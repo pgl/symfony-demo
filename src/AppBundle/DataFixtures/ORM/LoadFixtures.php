@@ -35,6 +35,9 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
     /** @var ContainerInterface */
     private $container;
 
+    /**
+     * {@inheritdoc}
+     */
     public function load(ObjectManager $manager)
     {
         $this->loadUsers($manager);
@@ -65,7 +68,7 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
 
     private function loadPosts(ObjectManager $manager)
     {
-        foreach (range(1, 10) as $i) {
+        foreach (range(1, 30) as $i) {
             $post = new Post();
 
             $post->setTitle($this->getRandomPostTitle());
@@ -93,6 +96,9 @@ class LoadFixtures implements FixtureInterface, ContainerAwareInterface
         $manager->flush();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
@@ -166,14 +172,14 @@ MARKDOWN;
         return $titles[array_rand($titles)];
     }
 
-    private function getRandomPostSummary()
+    private function getRandomPostSummary($maxLength = 255)
     {
         $phrases = $this->getPhrases();
 
         $numPhrases = rand(6, 12);
         shuffle($phrases);
 
-        return implode(' ', array_slice($phrases, 0, $numPhrases-1));
+        return substr(implode(' ', array_slice($phrases, 0, $numPhrases-1)), 0, $maxLength);
     }
 
     private function getRandomCommentContent()

@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @ORM\Table(name="symfony_demo_comment")
  *
  * Defines the properties of the Comment entity to represent the blog comments.
  * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -107,7 +108,7 @@ class Comment
     {
         return $this->publishedAt;
     }
-    public function setPublishedAt($publishedAt)
+    public function setPublishedAt(\DateTime $publishedAt)
     {
         $this->publishedAt = $publishedAt;
     }
@@ -116,7 +117,7 @@ class Comment
     {
         return $this->post;
     }
-    public function setPost(Post $post = null)
+    public function setPost(Post $post)
     {
         $this->post = $post;
     }

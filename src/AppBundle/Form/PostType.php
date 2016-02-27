@@ -24,8 +24,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class PostType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -40,37 +39,29 @@ class PostType extends AbstractType
         //     $builder->add('title', null, array('required' => false, ...));
 
         $builder
-            ->add('title', null, array('label' => 'label.title'))
-            ->add('summary', 'textarea', array('label' => 'label.summary'))
-            ->add('content', 'textarea', array(
+            ->add('title', null, array(
+                'attr' => array('autofocus' => true),
+                'label' => 'label.title',
+            ))
+            ->add('summary', 'Symfony\Component\Form\Extension\Core\Type\TextareaType', array('label' => 'label.summary'))
+            ->add('content', null, array(
                 'attr' => array('rows' => 20),
                 'label' => 'label.content',
             ))
-            ->add('authorEmail', 'email', array('label' => 'label.author_email'))
-            ->add('publishedAt', 'datetime', array(
-                'widget' => 'single_text',
+            ->add('authorEmail', null, array('label' => 'label.author_email'))
+            ->add('publishedAt', 'AppBundle\Form\Type\DateTimePickerType', array(
                 'label' => 'label.published_at',
             ))
         ;
     }
 
     /**
-     * @param OptionsResolver $resolver
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Post',
         ));
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        // Best Practice: use 'app_' as the prefix of your custom form types names
-        // see http://symfony.com/doc/current/best_practices/forms.html#custom-form-field-types
-        return 'app_post';
     }
 }
