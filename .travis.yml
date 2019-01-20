@@ -9,6 +9,7 @@ cache:
 env:
   global:
     - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
+    - SYMFONY_DEPRECATIONS_HELPER=weak
 
 matrix:
   fast_finish: true
