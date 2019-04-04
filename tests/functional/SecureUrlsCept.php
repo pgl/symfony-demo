@@ -1,4 +1,7 @@
-<?php use App\Tests\FunctionalTester;
+<?php
+
+use App\Tests\FunctionalTester;
+use Codeception\Util\HttpCode;
 
 $I = new FunctionalTester($scenario);
 $I->am('Anonymous');
@@ -13,6 +16,6 @@ $secureUrls = [
 
 foreach ($secureUrls as $url) {
     $I->amOnPage($url);
-    $I->seeResponseCodeIs(200);
+    $I->seeResponseCodeIs(HttpCode::OK);
     $I->seeCurrentUrlEquals('/en/login');
 }

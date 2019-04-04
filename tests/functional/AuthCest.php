@@ -1,5 +1,6 @@
 <?php
 namespace App\Tests;
+use Codeception\Util\HttpCode;
 
 class AuthCest
 {
@@ -24,7 +25,7 @@ class AuthCest
 
         $I->expect("user can't access admin area");
         $I->amOnLocalizedPage('/admin/post/');
-        $I->seeResponseCodeIs(403);
+        $I->seeResponseCodeIs(HttpCode::FORBIDDEN);
 
     }
 

@@ -1,4 +1,6 @@
-<?php use App\Tests\FunctionalTester;
+<?php
+use App\Tests\FunctionalTester;
+use Codeception\Util\HttpCode;
 
 $I = new FunctionalTester($scenario);
 $I->am('Anonymous');
@@ -12,6 +14,6 @@ $publicUrls = [
 
 foreach ($publicUrls as $url) {
     $I->amOnPage($url);
-    $I->seeResponseCodeIs(200);
+    $I->seeResponseCodeIs(HttpCode::OK);
     $I->seeCurrentUrlEquals($url);
 }
